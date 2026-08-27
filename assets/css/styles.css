@@ -1,831 +1,1302 @@
-.video-container {
-	position:relative;
-	padding-bottom:56.25%;
-	padding-top:30px;
-	height:0;
-	overflow:hidden;
-}
-
-.video-container iframe, .video-container object, .video-container embed {
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-}
-
-@font-face {
-    font-family: webflow-icons;
-    src: url("data:application/x-font-ttf;charset=utf-8;base64,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") format('truetype');
-    font-weight: 400;
-    font-style: normal
-}
-
-[class*=" w-icon-"],
-[class^=w-icon-] {
-    font-family: webflow-icons !important;
-    speak: none;
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.w-icon-slider-right:before {
-    content: "\e600";
-    color: white;
-    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
-}
-
-.w-icon-slider-left:before {
-    content: "\e601";
-    color: white;
-    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
-}
-
-.w-icon-nav-menu:before {
-    content: "\e602"
-}
-
-.w-icon-arrow-down:before,
-.w-icon-dropdown-toggle:before {
-    content: "\e603"
-}
-
-.w-icon-file-upload-remove:before {
-    content: "\e900"
-}
-
-.w-icon-file-upload-icon:before {
-    content: "\e903"
-}
-
-.w-background-video {
-    position: relative;
-    overflow: hidden;
-    height: 500px;
-    color: #fff
-}
-
-.w-background-video>video {
-    background-size: cover;
-    background-position: 50% 50%;
-    position: absolute;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    right: -100%;
-    bottom: -100%;
-    top: -100%;
-    left: -100%;
-    object-fit: cover;
-    z-index: -100
-}
-
-.w-background-video>video::-webkit-media-controls-start-playback-button {
-    display: none !important;
-    -webkit-appearance: none
-}
-
-.w-slider {
-    position: relative;
-    /* height: 300px; */
-    text-align: center;
-    background: #ddd;
-    clear: both;
-    -webkit-tap-highlight-color: transparent;
-    tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.w-slider-mask {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    z-index: 1;
-    left: 0;
-    right: 0;
-    height: 100%;
-    white-space: nowrap
-}
-
-.w-slide {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    width: 100%;
-    height: 98%;
-    padding-bottom: 30px;
-    white-space: normal;
-    text-align: left
-}
-
-.w-slider-nav {
-    position: absolute;
-    z-index: 100;
-    top: auto;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    padding-top: 10px;
-    height: 40px;
-    text-align: center;
-    -webkit-tap-highlight-color: transparent;
-    tap-highlight-color: rgba(0, 0, 0, 0)
-}
-
-.w-slider-nav.w-round>div {
-    border-radius: 100%
-}
-
-.w-slider-nav.w-num>div {
-    width: auto;
-    height: auto;
-    padding: .2em .5em;
-    font-size: inherit;
-    line-height: inherit
-}
-
-.w-slider-nav.w-shadow>div {
-    box-shadow: 0 0 3px rgba(51, 51, 51, .4)
-}
-
-.w-slider-nav-invert {
-    color: #fff
-}
-
-.w-slider-nav-invert>div {
-    background-color: rgba(34, 34, 34, .4)
-}
-
-.w-slider-nav-invert>div.w-active {
-    background-color: #222
-}
-
-.w-slider-dot {
-    position: relative;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    background-color: rgba(255, 255, 255, .4);
-    cursor: pointer;
-    margin: 0 3px .5em;
-    transition: background-color .1s, color .1s
-}
-
-.w-slider-dot.w-active {
-    background-color: #fff
-}
-
-.w-slider-dot:focus {
-    outline: 0;
-    box-shadow: 0 0 0 2px #fff
-}
-
-.w-slider-dot:focus.w-active {
-    box-shadow: none
-}
-
-.w-slider-arrow-left,
-.w-slider-arrow-right {
-    position: absolute;
-    width: 80px;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    cursor: pointer;
-    overflow: hidden;
-    color: #fff;
-    font-size: 40px;
-    -webkit-tap-highlight-color: transparent;
-    tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
-}
-
-.w-slider-arrow-left [class*=' w-icon-'],
-.w-slider-arrow-left [class^=w-icon-],
-.w-slider-arrow-right [class*=' w-icon-'],
-.w-slider-arrow-right [class^=w-icon-] {
-    position: absolute
-}
-
-.w-slider-arrow-left:focus,
-.w-slider-arrow-right:focus {
-    outline: 0
-}
-
-.w-slider-arrow-left {
-    z-index: 3;
-    right: auto
-}
-
-.w-slider-arrow-right {
-    z-index: 4;
-    left: auto
-}
-
-.w-icon-slider-left,
-.w-icon-slider-right {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    width: 1em;
-    height: 1em
-}
-
-.w-slider-aria-label {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px
-}
-
-.w-slider-force-show {
-    display: block !important
-}
-
-.html-embed-2 {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: fill;
-    object-fit: fill
-}
-
-.div-block-9 {
-    overflow: visible;
-    width: 98%;
-    height: 100%;
-    margin-right: auto;
-    margin-left: auto
-}
-
-.div-block-9.last_block {
-    position: absolute;
-    left: 101%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    padding-bottom: 30px;
-}
-
-.div-block-9.first_video {
-    position: absolute;
-    left: -200%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    padding-bottom: 30px;
-}
-
-.video_class {
-    width: auto;
-    height: 80%;
-    margin-right: auto;
-    margin-left: auto
-}
-
-.video_class.last_video {
-    position: absolute;
-    left: 52%;
-    top: 0;
-    right: 0;
-    bottom: 0
-}
-
-.video_class.mobile {
-    display: none
-}
-
-.slider-2 {
-    overflow: hidden;
-    height: 500px
-}
-
-.mask {
-    overflow: visible;
-    width: 40%;
-    margin-right: auto;
-    margin-left: auto
-}
-
-.nerf_slider_v2 {
-    overflow: hidden;
-    margin: 5px -15px 0;
-    background-color: rgba(56, 56, 56, 0);
-    padding-bottom: 36px;
-}
-
-.nerf_slider_v2 h6,
-.captioned_videos h6 {
-    /* font-style: italic; */
-    display: flex;
-    margin-right: auto;
-    margin-left: auto;
-    justify-content: center;
-    /* align-items: center; */
-    text-align: center;
-}
-
-/* .captioned_videos { */
-    /* padding-bottom: 20px; */
-    /* margin-top: 16px; */
-/* } */
-
-.captioned_videos h6 {
-    max-width: 768px;
-    padding-top: 6px;
-}
-
-.nerf_slider_v2 h6 {
-    width: 95%;
-    min-height: 100px;
-}
-
-.nerf_slider_v2 .first_video h6,
-.nerf_slider_v2 .last_block h6 {
-    max-width: 160px;
-}
-
-.citation {
-    margin-left: 10px;
-    /* background-color: #e9e9e9; */
-    padding: 8px;
-}
-
-.citation:not(:first-child) {
-    margin-top: 10px;
-}
-
-.citation h4,
-h5,
-h6 {
-    margin: 0;
-    font-weight: initial;
-}
-
-.citation b {
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-.citation ul {
-    padding-left: 0px;
-    margin: 0;
-}
-
-.citation li {
-    display: inline;
-}
-
-.citation h4 {
-    line-height: normal;
-    font-weight: bold;
-}
-
-.citation h5 {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    line-height: normal;
-    font-size: 12px;
-}
-
-.citation h6 {
-    /* margin-top: 4px; */
-    font-style: italic;
-}
-
-.citation img,
-.citation video {
-    float: right;
-    margin-left: 8px;
-}
-
-.citation p {
-    /* color: steelblue; */
-    /* font-weight: bold; */
-    font-size: 12px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-.citation .conference {
-    font-style: normal;
-    font-weight: bold;
-    padding-right: 5px;
-    padding-left: 5px;
-    /* background-color: PaleGreen; */
-    margin-left: 0;
-}
-
-.citation .conference.workshop {
-    background-color: LightSkyBlue;
-}
-
-.citation .conference.arxiv {
-    background-color: Gainsboro;
-}
-
-@media only screen and (max-width: 600px) {
-    .news,
-    .citation {
-        margin-left: 0;
-    }
-    .citation h4 {
-        font-size: 14px;
-    }
-    .citation ul {
-        font-size: 12px;
-    }
-    .authors h5 {
-        font-size: 20px;
-    }
-    .authors h6 {
-        font-size: 16px;
-        padding-bottom: 6px;
-    }
-    .show_wide {
-        display: none;
-    }
-}
-@media only screen and (max-width: 768px) {
-    .btn-search {
-        font-size: 16px;
-        padding-left: 4px;
-        padding-right: 4px;
-    }
-}
-
-.authors {
-    padding-bottom: 10px;
-}
-.authors .col-sm-3 {
-    padding: 0;
-}
-.authors h5 {
-    font-size: 24px;
-    font-weight: 300;
-}
-.authors h5 {
-    font-size: 20px;
-}
-
-.shadowed_text {
-    text-shadow: 4px 0 4px #5fb7f7, 0 -4px 4px #5fb7f7, 0 4px 4px #5fb7f7, -4px 0 4px #5fb7f7;
-    color: white;
+/* ==========================================================================
+   DreamLLM project page
+   Palette sampled from the project logo: deep plum, indigo-violet, rose, sand.
+   ========================================================================== */
+
+:root {
+    --ink: #211c30;
+    --ink-soft: #5b5470;
+    --ink-faint: #8b85a0;
+
+    --paper: #ffffff;
+    --surface: #f8f7fc;
+    --surface-2: #f1eff8;
+    --rule: #e6e3f0;
+
+    --accent: #5b5595;
+    --accent-deep: #413c73;
+    --accent-tint: #eeecf8;
+    --rose: #b4506c;
+    --rose-tint: #fbeef2;
+    --sand: #c7a488;
+
+    /* Outfit carries the display type and every piece of UI; Spectral is the
+       reading face for prose and captions. */
+    --font-sans: Outfit, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-serif: Spectral, Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    --measure: 74ch;
+    --radius: 14px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 1px 2px rgba(33, 28, 48, .05), 0 2px 8px rgba(33, 28, 48, .045);
+    --shadow-md: 0 2px 4px rgba(33, 28, 48, .05), 0 14px 36px rgba(33, 28, 48, .07);
+    --ease: cubic-bezier(.4, 0, .2, 1);
+}
+
+/* --------------------------------------------------------------- foundations */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* The aurora lives on a fixed layer behind <body>, so html owns the base colour
+   and body must stay transparent for it to show through. */
+html {
+    background-color: var(--paper);
 }
 
 body {
-    /* font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; */
-    /* font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; */
-    font-weight: 300;
-    font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+    margin: 0;
+    padding-bottom: 0;
+    background-color: transparent;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
-/* code {
-
-} */
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
-    font-weight: 300;
-    line-height: 1.1;
-    color: inherit;
-}
-
-p, .caption {
-    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
-    margin-top: 4px;
-}
-
-/* From Ref-NeRF */
-.video-compare-container {
-    width: 63%;
-    margin: 0 auto;
-    position: relative;
-    display: block;
-    line-height: 0;
-    overflow: hidden !important;
-  }
-  
-  .video {
-    width: 100%;
+/* The intrinsic width/height attributes reserve layout space; height:auto keeps
+   the aspect ratio once a max-width kicks in. */
+img,
+video {
+    max-width: 100%;
     height: auto;
+}
+
+::selection {
+    background: var(--accent-tint);
+    color: var(--accent-deep);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color .18s var(--ease);
+}
+
+a:hover,
+a:focus-visible {
+    color: var(--accent-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: -.011em;
+}
+
+p,
+.caption {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: 1.72;
+    color: var(--ink);
+    max-width: var(--measure);
+    margin: 0 auto 1.1rem;
+}
+
+/* Section headings, with a small two-tone accent rule underneath.  Centred,
+   because every other block on the page (title, authors, buttons, tabs,
+   transcript card, captions) is centred too. */
+.container h2 {
     position: relative;
-    top: 0;
-    left: 0;
-  }
-  
-  .videoMerge {
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    width: 100%;
-    display: block;
-    margin: 0 auto;
-    background-size: cover;
-  }
-  
-  .cropped-video{
-      width: 100%;
-      overflow:hidden;
-      display:block;
-  }
-
-/* Compositional generation */
-#compositional_tags_depth_0 {
-    display: none;
-}
-.compositional .text {
-    font-size: 18px;
-}
-.compositional .text .selectable {
-    padding: 0;
-}
-.compositional .text .selectable:last-child {
-    margin-bottom: 0;
-}
-.compositional .text .selectable span {
-    padding: 2px;
-    margin-left: 4px;
-    margin-right: 4px;
-    /* margin-top: 4px; */
-}
-.compositional .text .selectable span:first-child {
-    margin-left: 0;
-}
-.compositional .text .selectable span:hover {
-    cursor: pointer;
-}
-.compositional .text .selectable span:not(:last-child)::after {
-    content: '|';
-    padding: 2px 2px 2px 8px;
-    margin-right: -2px;
-    margin-left: 2px;
-    background-color: white;
-    color:rgb(161, 161, 161);
-}
-.compositional .text .selectable span:active {
-    cursor: pointer;
-    background: rgb(171, 218, 191) !important;
-}
-
-.compositional .text .selectable span.hidden {
-    display: none !important;
-    /* color: rgb(161, 161, 161) !important; */
-    /* background: white !important; */
-    /* cursor: default !important; */
-}
-.compositional .text .selectable span:not(.selected) {
-    font-weight: 300;
-    color: rgb(50, 50, 50);
-    /* background: rgb(200, 200, 200); */
-    /* color: blue; */
-}
-.compositional .text .selectable span:not(.selected):hover {
-    background: rgb(194, 247, 215);
-}
-.compositional .text .selectable span.selected {
-    color: #055ada;
-    background: rgb(194, 247, 215);
-    /* font-weight: bold; */
-}
-.compositional.video {
-    width: 100%;
-}
-.compositional .image-compare-container {
-    /* background-color: black; */
-    width: 100%;
-    max-width: 256px;
-    margin-right: auto;
-    margin-left: auto;
-    transition: opacity 0.75s ease-in;
-}
-@media screen and (max-width: 575px) {
-    .video-compare-container {
-        padding-top: 32px;
-    }
-}
-
-.banner {
-    width: 100%;
-    max-height: 128px;
-}
-@media screen and (min-width: 768px) {
-    .banner {
-        min-height: 128px;
-    }
-}
-.banner video {
-    max-height: 128px;
-    max-width: 768px;
-    /* text-align: center; */
-    margin-right: auto;
-    margin-left: auto;
-    display: block;
-}
-
-.btn-search {
-    display: block;
+    margin: 0 0 1.7rem;
+    padding-bottom: .75rem;
+    font-size: clamp(1.4rem, 2.3vw, 1.9rem);
+    font-weight: 600;
     text-align: center;
-    padding: 12px 20px 12px 20px;
-    margin-right: auto;
-    margin-left: auto;
 }
 
-.btn-search svg {
-    margin-right: 4px;
+.container h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 46px;
+    height: 2px;
+    margin-left: -23px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--rose));
 }
 
+/* A short ornamental hairline.  The glass plates already separate the sections,
+   so this only has to mark the beat between them. */
 hr.divider {
-    max-width: 75%;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    max-width: 15%;
+    height: 1px;
+    margin: clamp(1.7rem, 3.6vw, 2.9rem) auto;
+    border: 0;
+    background: linear-gradient(90deg, transparent, var(--rule) 26%, var(--rule) 74%, transparent);
 }
 
 .row:not(:last-child):not(.authors) {
     margin-bottom: 16px;
 }
 
-.invisible {
-    display: none;
+/* ------------------------------------------------------------ aurora backdrop */
+
+/* Five oversized, heavily blurred colour fields drifting on long, mutually prime
+   cycles, with a slow independent breath on each so the field never settles into a
+   pattern.  Fixed and pinned behind body content, so it costs composited layers
+   only and never reflows the page. */
+.aurora {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    contain: strict;
 }
 
-.btn-light.disabled {
-    background-color: #ccc;
+.aurora__blob {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    /* The softness comes entirely from the radial stops below.  A filter: blur() on
+       top of them is invisible — they are already a smooth ramp to zero alpha — but
+       it forces a filter pass over a ~1000px square on every scale keyframe, which
+       measured as roughly a third of the page's scroll cost. */
+    will-change: transform, opacity;
 }
 
+/* Indigo-violet, over the shoulder of the title. */
+.aurora__blob--a {
+    top: -22vh;
+    left: -14vw;
+    width: 74vw;
+    height: 74vw;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(91, 85, 149, .24) 0%, rgba(91, 85, 149, .13) 42%, rgba(91, 85, 149, 0) 70%);
+    animation: drift-a 54s var(--ease) infinite alternate,
+        breathe 23s var(--ease) infinite;
+}
 
-/* Gallery */
-.video-gallery {
-  padding:40px 0;
+/* Rose. */
+.aurora__blob--b {
+    top: 18vh;
+    right: -20vw;
+    width: 66vw;
+    height: 66vw;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(180, 80, 108, .23) 0%, rgba(180, 80, 108, .12) 44%, rgba(180, 80, 108, 0) 70%);
+    animation: drift-b 67s var(--ease) infinite alternate,
+        breathe 31s var(--ease) infinite -7s;
 }
-.column {
-  margin-bottom:40px;
+
+/* Sand, warming the lower half of the page. */
+.aurora__blob--c {
+    bottom: -30vh;
+    left: 22vw;
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(199, 164, 136, .26) 0%, rgba(199, 164, 136, .13) 45%, rgba(199, 164, 136, 0) 72%);
+    animation: drift-c 61s var(--ease) infinite alternate,
+        breathe 29s var(--ease) infinite -13s;
 }
+
+/* A cool periwinkle note, so the field shifts through more than one temperature. */
+.aurora__blob--d {
+    top: 46vh;
+    left: -18vw;
+    width: 58vw;
+    height: 58vw;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(112, 146, 184, .21) 0%, rgba(112, 146, 184, .1) 44%, rgba(112, 146, 184, 0) 70%);
+    animation: drift-d 73s var(--ease) infinite alternate,
+        breathe 37s var(--ease) infinite -21s;
+}
+
+/* Orchid — the dream colour, kept smallest and most saturated. */
+.aurora__blob--e {
+    top: 4vh;
+    left: 34vw;
+    width: 48vw;
+    height: 48vw;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(150, 108, 178, .2) 0%, rgba(150, 108, 178, .09) 46%, rgba(150, 108, 178, 0) 72%);
+    animation: drift-e 83s var(--ease) infinite alternate,
+        breathe 41s var(--ease) infinite -3s;
+}
+
+@keyframes drift-a {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(12vw, 14vh, 0) scale(1.16);
+    }
+}
+
+@keyframes drift-b {
+    from {
+        transform: translate3d(0, 0, 0) scale(1.1);
+    }
+
+    to {
+        transform: translate3d(-14vw, 22vh, 0) scale(.92);
+    }
+}
+
+@keyframes drift-c {
+    from {
+        transform: translate3d(0, 0, 0) scale(.95);
+    }
+
+    to {
+        transform: translate3d(16vw, -16vh, 0) scale(1.2);
+    }
+}
+
+@keyframes drift-d {
+    from {
+        transform: translate3d(0, 0, 0) scale(1.05);
+    }
+
+    to {
+        transform: translate3d(26vw, -20vh, 0) scale(.88);
+    }
+}
+
+@keyframes drift-e {
+    from {
+        transform: translate3d(0, 0, 0) scale(.9);
+    }
+
+    to {
+        transform: translate3d(-22vw, 26vh, 0) scale(1.22);
+    }
+}
+
+/* The breath.  Opacity only, so it composites alongside the drift transform
+   without either animation cancelling the other. */
+@keyframes breathe {
+
+    0%,
+    100% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Dream dust: three sparse tiled fields of soft specks rising through the page and
+   twinkling out of step with each other.  Every tile is 181px tall, so a single
+   181px translation loops all three seamlessly. */
+.aurora::after {
+    content: "";
+    position: absolute;
+    inset: -25% 0;
+    background-image:
+        radial-gradient(circle, rgba(91, 85, 149, .55) 0 1.1px, transparent 1.7px),
+        radial-gradient(circle, rgba(180, 80, 108, .45) 0 1.4px, transparent 2px),
+        radial-gradient(circle, rgba(199, 164, 136, .5) 0 .9px, transparent 1.5px);
+    background-size: 137px 181px, 211px 181px, 97px 181px;
+    background-position: 0 0, 61px 63px, 23px 121px;
+    will-change: transform, opacity;
+    animation: dust-rise 46s linear infinite,
+        dust-twinkle 11s var(--ease) infinite;
+}
+
+@keyframes dust-rise {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, -181px, 0);
+    }
+}
+
+@keyframes dust-twinkle {
+
+    0%,
+    100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: .85;
+    }
+}
+
+/* -------------------------------------------------------------- glass plates */
+
+/* Every section rides on its own sheet of frosted glass: the aurora stays visible
+   in the gutters and between cards, and shows through each plate as a soft wash,
+   but the backdrop blur means no colour structure ever lands behind running text.
+   The saturate() boost is what makes the wash read as colour rather than grey. */
+.container.section {
+    padding: clamp(1.35rem, 2.6vw, 2.5rem) clamp(1.1rem, 2.4vw, 2.5rem);
+    background: linear-gradient(158deg,
+            rgba(255, 255, 255, .86) 0%,
+            rgba(255, 255, 255, .72) 54%,
+            rgba(255, 255, 255, .82) 100%);
+    /* saturate() rather than the usual blur(): the backdrop is nothing but smooth
+       gradients, so a blur is invisible here, and a backdrop blur costs a flat ~6ms
+       per scrolled frame at any radius.  What is left deepens the colour showing
+       through the glass, which is the whole point of the effect. */
+    -webkit-backdrop-filter: saturate(1.5);
+    backdrop-filter: saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, .9);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 2px rgba(33, 28, 48, .04), 0 18px 44px rgba(33, 28, 48, .06),
+        inset 0 1px 0 rgba(255, 255, 255, .95);
+    scroll-margin-top: 2rem;
+}
+
+/* The framework and dream-query figures are line art on white, so they need a
+   near-opaque sheet or the tint bleeds into the diagram. */
+.container.section.plate {
+    background: linear-gradient(158deg,
+            rgba(255, 255, 255, .95) 0%,
+            rgba(255, 255, 255, .9) 54%,
+            rgba(255, 255, 255, .94) 100%);
+}
+
+/* Cards already sitting inside a section shouldn't stack a second sheet. */
+.container.section .chat-container {
+    background: rgba(255, 255, 255, .6);
+    border-color: rgba(255, 255, 255, .9);
+}
+
+.container.section code {
+    background: rgba(248, 247, 252, .82);
+}
+
+/* ------------------------------------------------------------- side nav rail */
+
+.sidenav {
+    position: fixed;
+    top: 50%;
+    left: max(.7rem, 1.2vw);
+    z-index: 60;
+    transform: translateY(-50%);
+    font-family: var(--font-sans);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s var(--ease), visibility .35s var(--ease);
+}
+
+/* Revealed by JS once the first section is in play, so it never sits over the
+   title block. */
+.sidenav.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidenav ol {
+    display: flex;
+    flex-direction: column;
+    gap: .12rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidenav a {
+    display: flex;
+    align-items: center;
+    gap: .58rem;
+    padding: .34rem .6rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: var(--ink-faint);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .012em;
+    white-space: nowrap;
+    transition: color .2s var(--ease), background-color .2s var(--ease),
+        border-color .2s var(--ease);
+}
+
+.sidenav i {
+    flex: 0 0 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #d5d0e6;
+    transition: background-color .2s var(--ease), transform .2s var(--ease),
+        box-shadow .2s var(--ease);
+}
+
+.sidenav a:hover,
+.sidenav a:focus-visible {
+    background: rgba(255, 255, 255, .8);
+    border-color: rgba(255, 255, 255, .9);
+    color: var(--accent-deep);
+    text-decoration: none;
+}
+
+.sidenav a:hover i {
+    background: var(--accent);
+}
+
+.sidenav .active a {
+    background: rgba(255, 255, 255, .85);
+    border-color: rgba(255, 255, 255, .95);
+    color: var(--accent-deep);
+    box-shadow: var(--shadow-sm);
+}
+
+.sidenav .active i {
+    background: linear-gradient(135deg, var(--accent), var(--rose));
+    transform: scale(1.28);
+    box-shadow: 0 0 0 3px var(--accent-tint);
+}
+
+/* ---------------------------------------------------------------- hero video */
+
+/* object-fit leaves white bars beside the clip, so .hero paints them itself.  Two
+   details matter for the seam between bar and picture:
+
+   - the fill is #fefefe, not #fff, because that is what the H.264 decoder yields
+     for the clip's own white, and one unit is enough to draw a visible edge 500px
+     tall;
+   - the fade at the bottom is a mask on .hero rather than a gradient background
+     plus a second mask on the video.  Two stacked fades composite as α(2−α) where
+     they overlap and as α where they don't, which reopens the seam across the whole
+     fade band.  One mask over the finished layer fades bar and picture identically. */
+.hero {
+    position: relative;
+    overflow: hidden;
+    background-color: #fefefe;
+    -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 76%, transparent 100%);
+}
+
+.hero video {
+    display: block;
+    width: 100%;
+    max-height: 72vh;
+    object-fit: contain;
+    background-color: transparent;
+}
+
+/* ------------------------------------------------------------- title block */
+
+/* Transparent, so the title block floats on the aurora the hero fades into. */
+.highlight-clean {
+    padding: clamp(.5rem, 2vw, 1.5rem) 0 0;
+    background-color: transparent;
+    color: var(--ink);
+}
+
+.highlight-clean h1.title {
+    margin: 0 0 .35rem;
+    font-size: clamp(1.85rem, 4.1vw, 3.1rem);
+    font-weight: 300;
+    letter-spacing: -.022em;
+    line-height: 1.14;
+    color: var(--ink);
+}
+
+.highlight-clean h1.title b {
+    font-weight: 700;
+    background: linear-gradient(96deg, var(--sand) 4%, var(--rose) 46%, var(--accent) 96%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--accent);
+}
+
+/* The venue is the first thing a reader wants confirmed, so it is sized to be read
+   at a glance rather than tucked under the title as fine print. */
+.highlight-clean h2.venue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .65rem;
+    margin: .15rem 0 2rem;
+    padding: 0;
+    font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+}
+
+.highlight-clean h2.venue::after {
+    content: none;
+}
+
+.highlight-clean h2.venue b {
+    font-weight: 700;
+}
+
+/* The official ICLR mark, cropped to the head so it doesn't repeat the "ICLR" set
+   in type beside it.  Sized off the venue line so the two scale together. */
+.highlight-clean h2.venue .venue-logo {
+    flex: 0 0 auto;
+    width: auto;
+    height: 1.85em;
+}
+
+/* The <font> tag is legacy markup from the template; re-cast it as a badge. */
+.highlight-clean h2.venue font {
+    padding: .32em .85em .36em;
+    border-radius: 999px;
+    background: linear-gradient(120deg, var(--rose), #8d4a76);
+    color: #fff;
+    font-size: .76em;
+    font-weight: 700;
+    letter-spacing: .11em;
+    box-shadow: 0 3px 12px rgba(180, 80, 108, .3);
+}
+
+/* ------------------------------------------------------- authors & affiliations */
+
+.row.authors,
+.row.affiliations {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    margin: 0;
+}
+
+.row.authors {
+    padding-bottom: .3rem;
+    column-gap: 1.35rem;
+    row-gap: .1rem;
+}
+
+.authors .col,
+.affiliations .col {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    padding: 0;
+}
+
+.authors h5 {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.authors h5 a,
+.authors h5 b {
+    font-weight: 400;
+}
+
+.authors a {
+    color: var(--ink);
+}
+
+.authors a[href]:hover {
+    color: var(--accent);
+}
+
+.authors sup,
+.affiliations sup {
+    margin-left: 1px;
+    font-size: .62em;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: .04em;
+}
+
+.row.affiliations {
+    column-gap: 1.15rem;
+    row-gap: .2rem;
+    margin-top: 1.05rem;
+}
+
+.affiliations h6 {
+    margin: 0;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink-soft);
+}
+
+.affiliations a {
+    color: var(--ink-soft);
+    cursor: default;
+}
+
+.affiliations a:hover {
+    color: var(--ink-soft);
+    text-decoration: none;
+}
+
+/* ------------------------------------------------------------------- buttons */
+
+.highlight-clean .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .6rem;
+    margin: 0 0 .5rem;
+}
+
+.highlight-clean .buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: .7rem 1.4rem;
+    margin: 0;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--paper);
+    box-shadow: none;
+    text-shadow: none;
+    opacity: 1;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: .9375rem;
+    font-weight: 600;
+    letter-spacing: .005em;
+    line-height: 1;
+    transition: transform .18s var(--ease), box-shadow .18s var(--ease),
+        background-color .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease);
+}
+
+.highlight-clean .buttons .btn svg {
+    width: 20px;
+    height: 20px;
+    margin: 0 .55rem 0 -.25rem;
+    fill: currentColor;
+}
+
+/* Brand marks that carry their own colour come in as <img>, so they keep it on the
+   accent-filled hover state too.  Matched to the inline icons' optical size. */
+.highlight-clean .buttons .btn .btn-logo {
+    width: auto;
+    height: 21px;
+    margin: 0 .5rem 0 -.3rem;
+}
+
+/* The first button is the paper itself: give it the emphasis. */
+.highlight-clean .buttons .btn:first-child {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+}
+
+.highlight-clean .buttons .btn:hover,
+.highlight-clean .buttons .btn:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.highlight-clean .buttons .btn:active {
+    transform: translateY(0);
+}
+
+/* ------------------------------------------------------------------ captions */
+
+.captioned_videos h6,
+.captioned_videos .caption {
+    display: block;
+    max-width: 74ch;
+    margin: .9rem auto 0;
+    padding: 0;
+    font-family: var(--font-serif);
+    font-size: .9375rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+.captioned_videos video {
+    display: block;
+    border-radius: var(--radius);
+    background-color: var(--paper);
+}
+
+.captioned_videos img {
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Dream-query rows: the source photo sits in a col-md-1, i.e. a twelfth of the
+   row, which leaves it unreadably small in the md range.  Size it against the
+   viewport instead (the container is a fixed 80% of it) and right-align it, so
+   the overflow vents left into the empty spacer column rather than sliding
+   under the attention grid beside it. */
+@media only screen and (min-width: 768px) {
+    .captioned_videos .col-md-1 {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .captioned_videos .col-md-1 img {
+        display: block;
+        flex: 0 0 auto;
+        width: 9vw;
+        /* beats the inline max-width: 150% */
+        max-width: 9vw !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .captioned_videos .col-md-1 img {
+        max-width: 62% !important;
+        margin: 0 auto .6rem;
+        display: block;
+    }
+}
+
 .video {
-  max-width: 100%;
-}
-.card-body {
-  padding: 12px;
-}
-.search .card-body {
-    padding: 32px
-}
-#videoGallery .sticky-top {
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-.row.search {
-  padding-top: 16px;
-  margin-top: 0;
-  margin-bottom: 16px;
-  max-width: 900px !important;
-  padding-bottom: 16px;
-}
-.row.search .col-sm-12 {
-    /* padding: 0; */
-    max-width: 900px !important;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    background-color: var(--paper);
 }
 
-.disappearing {
-    /* opacity: 0; */
-    transition-property: background-color;
-    transition-duration: 2s;
+/* --------------------------------------------------------- dialogue examples */
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .4rem;
+    margin: 0 auto 1.6rem;
 }
 
-.display-none {
-    display: none !important;
+.conversation-button {
+    padding: .5rem 1.05rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink-soft);
+    font-family: var(--font-sans);
+    font-size: .9375rem;
+    font-weight: 600;
+    letter-spacing: .003em;
+    cursor: pointer;
+    transition: background-color .18s var(--ease), color .18s var(--ease),
+        border-color .18s var(--ease), transform .18s var(--ease);
 }
 
-
-.model-viewer {
-    margin-bottom: 8px;
+.conversation-button:hover {
+    background: var(--accent-tint);
+    border-color: #ddd8ef;
+    color: var(--accent-deep);
+    text-decoration: none;
 }
 
-.meshes .controls {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-.meshes .controls button:not(:last-child) {
-    margin-right: 4px;
-}
-.meshes p.caption {
-    text-align: center;
+.conversation-button.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(91, 85, 149, .25);
 }
 
 .chat-container {
-    max-width: 85%;
+    max-width: 920px;
     margin: 0 auto;
-    padding: 100px
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: clamp(1rem, 3vw, 2rem);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     overflow: hidden;
 }
 
-.chat-header {
-    background-color: #0084ff;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
+.chat-messages {
+    padding: 0;
+    opacity: 1;
+    transition: opacity .35s var(--ease);
 }
 
-.chat-messages {
-    padding: 10px;
-    transition: opacity 0.6s ease-in-out;
-    opacity: 1;
+.user-message-container,
+.bot-message-container {
+    display: flex;
+    align-items: flex-start;
+    gap: .6rem;
+    margin-bottom: .7rem;
 }
 
 .user-message-container {
-    display: flex;
-    flex-direction: row-reverse
+    flex-direction: row-reverse;
 }
 
 .bot-message-container {
-    display: flex;
-    flex-direction: row
+    flex-direction: row;
+}
+
+/* Avatars: paths live in the inline <style> block of index.html. */
+.user-icon,
+.bot-icon {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    margin: 4px 0 0;
+    border-radius: 50%;
+    background-color: var(--surface);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    float: none;
 }
 
 .message {
-    clear: both;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 10px;
+    clear: none;
+    float: none;
+    max-width: min(76%, 580px);
+    margin: 0;
+    padding: 0;
+    border-radius: 16px;
 }
 
 .user-message {
-    background: linear-gradient(to right, #a0d6b4, #82a8d6);
-    color: #fff;
-    float: right;
-    max-width: 75%;
-    font-weight: bold;
+    background: var(--accent-tint);
+    border: 1px solid #ded9f0;
+    border-bottom-right-radius: 5px;
+    color: var(--ink);
+    font-weight: 400;
+}
+
+.bot-message {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-bottom-left-radius: 5px;
+    color: var(--ink);
+    font-weight: 400;
+}
+
+/* Outfit rather than the reading serif: a transcript should look like a chat
+   client, not like a block quote from the paper. */
+.message-text {
+    padding: .62rem .95rem;
+    font-family: var(--font-sans);
+    font-size: .9375rem;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: .004em;
 }
 
 .image-message {
     max-width: 250px;
-    margin: 5px;
-    border-radius: 20px;
+    margin: 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    cursor: zoom-in;
+    transition: transform .22s var(--ease), box-shadow .22s var(--ease);
+}
+
+.image-message:hover {
+    transform: translateY(-2px) scale(1.012);
+    box-shadow: var(--shadow-md);
+}
+
+/* --------------------------------------------------- compositional generation */
+
+.compositional .text {
+    font-size: 1rem;
+}
+
+.compositional .text .selectable {
+    max-width: none;
+    margin: 0 0 .55rem;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: .9375rem;
+    line-height: 1.4;
+}
+
+.compositional .text .selectable:last-child {
+    margin-bottom: 0;
+}
+
+/* Each alternative is its own chip: inline-block so a phrase that has to wrap
+   moves as a whole instead of tearing its background across two lines. */
+.compositional .text .selectable span {
+    display: inline-block;
+    margin: 0 .2rem .3rem 0;
+    padding: .3em .62em;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink-soft);
+    font-weight: 400;
+    transition: background-color .16s var(--ease), color .16s var(--ease),
+        border-color .16s var(--ease);
+}
+
+.compositional .text .selectable span:hover {
     cursor: pointer;
+    background: var(--accent-tint);
+    border-color: #ddd8ef;
+    color: var(--accent-deep);
 }
 
-.bot-message {
-    background: linear-gradient(to right, #f9d9d9, #eaeaea);
-    color: #333;
-    float: left;
-    max-width: 75%;
-    font-weight: bold;
+.compositional .text .selectable span.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
 }
 
-.message-text {
-    padding: 8px;
+.compositional .text .selectable span.hidden {
+    display: none !important;
 }
 
-.button-container {
-    text-align: center;
+/* The prompt is built from two lines: a fixed subject, then the alternatives you
+   can actually click.  Both arrived as identical chips, so the first is recast as
+   a plain prompt stem and the second gets a label telling you it is the choice. */
+.compositional .text>.selectable>.selectable:first-child {
+    margin-bottom: .9rem;
+    padding-bottom: .9rem;
+    border-bottom: 1px dashed var(--rule);
 }
 
-.conversation-button {
+.compositional .text>.selectable>.selectable:first-child span,
+.compositional .text>.selectable>.selectable:first-child span.selected,
+.compositional .text>.selectable>.selectable:first-child span:hover {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-color: transparent;
     background: none;
-    border: none;
+    box-shadow: none;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.34;
+    cursor: default;
+}
+
+/* my-auto centres each column on its own, and the two prompts have different
+   numbers of alternatives, so the stems land at different heights.  Pin them to
+   the top of the row instead so the two read as a matched pair. */
+@media only screen and (min-width: 576px) {
+
+    /* Bootstrap's spacing utilities are all !important, so overriding my-auto
+       needs to match. */
+    .compositional .text.my-auto {
+        margin-top: 0 !important;
+        margin-bottom: auto !important;
+    }
+}
+
+.compositional .text>.selectable>.selectable:nth-child(2)::before {
+    content: "choose one";
+    display: block;
+    margin-bottom: .45rem;
+    color: var(--ink-faint);
+    font-family: var(--font-sans);
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+.compositional .image-compare-container {
+    width: 100%;
+    max-width: 256px;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: opacity .5s ease-in;
+}
+
+.compositional .image-compare-container img {
+    display: block;
+    width: 100%;
+}
+
+/* -------------------------------------------------------------- citation card */
+
+.container code {
+    display: block;
+    padding: 1.15rem 1.3rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    line-height: 1.75;
+    /* Bootstrap sets word-wrap:break-word on <code>, which snaps BibTeX keys and
+       URLs mid-token on narrow screens.  Scroll instead of mangling them. */
+    overflow-wrap: normal;
+    word-break: normal;
+    overflow-x: auto;
+}
+
+.citation-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    margin-top: .8rem;
+    padding: .45rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink-soft);
+    font-family: var(--font-sans);
+    font-size: .8125rem;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 17px;
-    font-family: cursive;
-    margin: 0 20px;
-    border-radius: 15px;
-    font-weight: bold;
+    transition: background-color .18s var(--ease), color .18s var(--ease),
+        border-color .18s var(--ease);
 }
 
-.conversation-button:hover {
-    text-decoration: underline;
+.citation-copy:hover {
+    background: var(--accent-tint);
+    border-color: #ddd8ef;
+    color: var(--accent-deep);
 }
 
-.button-container {
-    text-align: center;
+.citation-copy svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
 }
+
+/* ------------------------------------------------------------------- lightbox */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vmin;
+    background: rgba(28, 24, 40, .82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    cursor: zoom-out;
+    transition: opacity .26s var(--ease), visibility .26s var(--ease);
+}
+
+.lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: var(--radius);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .45);
+    transform: scale(.97);
+    transition: transform .26s var(--ease);
+}
+
+.lightbox.open img {
+    transform: scale(1);
+}
+
+/* --------------------------------------------------------------------- footer */
 
 .footer {
-    font-size: 16px;
-    color: #000;
+    max-width: 80%;
+    margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+    padding: 1.6rem 0 2.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-faint);
+    font-size: .875rem;
+}
+
+.footer p {
+    max-width: none;
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: .875rem;
+    line-height: 1.6;
+    color: var(--ink-faint);
+}
+
+/* ------------------------------------------------------- scroll-in transition */
+
+/* Added by JS only, so the page stays fully visible without scripting. */
+.reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: none;
+}
+
+/* ----------------------------------------------------------------- responsive */
+
+/* Labels are shown once the 10vw gutter of the 80%-wide containers can hold the
+   rail plus a gap.  The rail is given a fixed width so it can be anchored off the
+   gutter rather than the window edge — that keeps a constant 14px clearance from
+   the plate at every width instead of tightening as the window narrows.  The
+   widest label ("Dream queries") measures 83px, so 7.6rem is comfortable. */
+@media only screen and (min-width: 1400px) {
+    .sidenav {
+        width: 7.6rem;
+        left: max(.7rem, calc(10vw - 7.6rem - 14px));
+    }
+}
+
+/* Narrower than that, the rail collapses to dots and reveals a label on
+   hover/focus instead of overlapping a plate. */
+@media only screen and (max-width: 1399px) {
+    .sidenav a {
+        padding: .34rem;
+    }
+
+    .sidenav a span {
+        position: absolute;
+        left: 1.9rem;
+        padding: .3rem .7rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .94);
+        box-shadow: var(--shadow-sm);
+        opacity: 0;
+        transform: translateX(-4px);
+        pointer-events: none;
+        transition: opacity .18s var(--ease), transform .18s var(--ease);
+    }
+
+    .sidenav a:hover span,
+    .sidenav a:focus-visible span {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    /* Full-width content, no gutter to put a rail in. */
+    .sidenav {
+        display: none;
+    }
+
+    /* Six links at full size overrun a tablet by a few dozen pixels and drop one
+       button onto a lonely second row.  Tightening them keeps the set on one line
+       down to about 720px, below which it breaks evenly. */
+    .highlight-clean .buttons {
+        gap: .45rem;
+    }
+
+    .highlight-clean .buttons .btn {
+        padding: .6rem 1.05rem;
+        font-size: .875rem;
+    }
+
+    .container.section {
+        padding: clamp(1.1rem, 3.5vw, 1.6rem) clamp(.9rem, 3vw, 1.4rem);
+        border-radius: var(--radius);
+    }
+
+    .row.authors {
+        column-gap: 1rem;
+    }
+
+    .authors h5 {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    p,
+    .caption {
+        font-size: 1rem;
+    }
+
+    .row.authors {
+        column-gap: .85rem;
+    }
+
+    .authors h5 {
+        font-size: .9375rem;
+    }
+
+    .affiliations h6 {
+        font-size: .8125rem;
+    }
+
+    .highlight-clean h2.venue {
+        font-size: 1.05rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .conversation-button {
+        padding: .42rem .85rem;
+        font-size: .875rem;
+    }
+
+    .message {
+        max-width: 84%;
+    }
+
+    .image-message {
+        max-width: 200px;
+    }
+
+    .hero video {
+        max-height: 42vh;
+    }
+
+    /* Stacked above their image rather than beside it, so centre them. */
+    .compositional .text .selectable {
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Hold the aurora still rather than hiding it: the colour is part of the
+       design, the drift is the part that can cause trouble.  The dust keeps its
+       mid-cycle opacity so the field still reads, it just stops rising. */
+    .aurora__blob {
+        animation: none !important;
+    }
+
+    .aurora::after {
+        opacity: .6;
+        animation: none !important;
+    }
 }

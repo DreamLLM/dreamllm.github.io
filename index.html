@@ -1,63 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>DreamLLM: Synergistic Multimodal Comprehension and Creation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet'
-        type='text/css'>
-    <link rel="stylesheet" href="/assets/css/Highlight-Clean.css">
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <meta name="description"
+        content="DreamLLM is the first Multimodal Large Language Model capable of generating free-form interleaved content, learning from the synergy between multimodal comprehension and creation. ICLR 2024 Spotlight." />
+    <meta name="theme-color" content="#ffffff" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="logo.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="logo.png">
+    <link rel="manifest" href="site.webmanifest">
 
     <meta property="og:site_name" content="DreamLLM: Synergistic Multimodal Comprehension and Creation" />
-    <meta property="og:type" content="video.other" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="DreamLLM: Synergistic Multimodal Comprehension and Creation" />
-    <meta property="og:description" content="DreamLLM: Synergistic Multimodal Comprehension and Creation, 2023." />
+    <meta property="og:description"
+        content="The first MLLM capable of generating free-form interleaved content, learning from the synergy between multimodal comprehension and creation. ICLR 2024 Spotlight." />
     <meta property="og:url" content="https://dreamllm.github.io/" />
+    <meta property="og:image" content="https://dreamllm.github.io/assets/images/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <meta property="article:publisher" content="https://dreamllm.github.io/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="DreamLLM: Synergistic Multimodal Comprehension and Creation" />
+    <meta name="twitter:description"
+        content="The first MLLM capable of generating free-form interleaved content. ICLR 2024 Spotlight." />
     <meta name="twitter:url" content="https://dreamllm.github.io/" />
+    <meta name="twitter:image" content="https://dreamllm.github.io/assets/images/og-image.jpg" />
 
     <style>
+        /* Avatar artwork; the geometry lives in styles.css. */
         .user-icon {
-            background-image: url('assets/images/icon/user.png');
-            background-size: 30px 30px;
-            /* Adjust the size as needed */
-            width: 30px;
-            height: 30px;
-            background-repeat: no-repeat;
-            margin-right: 10px;
-            margin-top: 10px;
-            float: right;
+            background-image: url('assets/images/icon/user.webp');
         }
 
         .bot-icon {
-            background-image: url('assets/images/icon/bot.png');
-            background-size: 30px 30px;
-            /* Adjust the size as needed */
-            width: 30px;
-            height: 30px;
-            background-repeat: no-repeat;
-            margin-left: 10px;
-            margin-top: 10px;
-            float: left;
+            background-image: url('assets/images/icon/bot.webp');
         }
     </style>
 
 </head>
 
 <body>
-    <div>
+    <!-- Drifting aurora backdrop.  Purely decorative, and kept on its own fixed
+         layer behind everything so no section needs a background of its own.  Five
+         colour fields plus a drift of dream dust, all painted by CSS. -->
+    <div class="aurora" aria-hidden="true">
+        <span class="aurora__blob aurora__blob--a"></span>
+        <span class="aurora__blob aurora__blob--b"></span>
+        <span class="aurora__blob aurora__blob--c"></span>
+        <span class="aurora__blob aurora__blob--d"></span>
+        <span class="aurora__blob aurora__blob--e"></span>
+    </div>
+
+    <nav class="sidenav" aria-label="Page sections">
+        <ol>
+            <li><a href="#abstract"><i aria-hidden="true"></i><span>Abstract</span></a></li>
+            <li><a href="#framework"><i aria-hidden="true"></i><span>Framework</span></a></li>
+            <li><a href="#dialogue"><i aria-hidden="true"></i><span>Dialogue</span></a></li>
+            <li><a href="#text-to-image"><i aria-hidden="true"></i><span>Text&#8209;to&#8209;image</span></a></li>
+            <li><a href="#try-it"><i aria-hidden="true"></i><span>Try it</span></a></li>
+            <li><a href="#dream-queries"><i aria-hidden="true"></i><span>Dream queries</span></a></li>
+            <li><a href="#citation"><i aria-hidden="true"></i><span>Citation</span></a></li>
+        </ol>
+    </nav>
+
+    <div class="hero">
         <video class="video lazy" autoplay loop playsinline muted>
             <source data-src="assets/images/poster.mp4" type="video/mp4">
             </source>
@@ -65,10 +86,10 @@
     </div>
     <div class="highlight-clean" style="padding-bottom: 10px;">
         <div class="container" style="max-width: 85%;">
-            <h1 class="text-center"><b>DreamLLM</b>: Synergistic Multimodal Comprehension and Creation</h1>
+            <h1 class="text-center title"><b>DreamLLM</b>: Synergistic Multimodal Comprehension and Creation</h1>
         </div>
         <div class="container" style="max-width: 85%;">
-            <h2 class="text-center"><b>ICLR 2024</b> <font color="#E43F37">Spotlight</font></h2>
+            <h2 class="text-center venue"><img class="venue-logo" src="assets/images/iclr-logo.svg" alt="" aria-hidden="true" width="41" height="37" /><b>ICLR 2024</b> <font color="#E43F37">Spotlight</font></h2>
         </div>
         <div class="container" style="max-width: 980px; margin-bottom: 20px;">
             <div class="row authors">
@@ -160,19 +181,19 @@
         </div>
 
         <div class="buttons" style="margin-bottom: 8px;">
-            <a class="btn btn-light" role="button" href="https://openreview.net/forum?id=y01KGvd9Bw">
+            <a class="btn btn-light" role="button" href="https://proceedings.iclr.cc/paper_files/paper/2024/file/1a7a22152cd21f0ca3c0f8139bb32905-Paper-Conference.pdf">
                 <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z">
                     </path>
                 </svg>Paper
             </a>
-            <a class="btn btn-light disabled border border-dark" aria-disabled="true" role="button" href="#">
-                <svg style="visibility:hidden;width:0px;height:24px;margin-left:-12px;margin-right:12px" width="0px"
-                    height="24px" viewBox="0 0 375 531">
-                    <polygon stroke="#000000" points="0.5,0.866 459.5,265.87 0.5,530.874 " />
-                </svg>
-                Project
+            <a class="btn btn-light" role="button" href="https://openreview.net/forum?id=y01KGvd9Bw">
+                <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M17 12V3A1 1 0 0 0 16 2H3A1 1 0 0 0 2 3V17L6 13H16A1 1 0 0 0 17 12M21 6H19V15H6V17A1 1 0 0 0 7 18H18L22 22V7A1 1 0 0 0 21 6Z">
+                    </path>
+                </svg>OpenReview
             </a>
             <a class="btn btn-light" role="button" href="https://github.com/RunpeiDong/DreamLLM">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -186,12 +207,31 @@
                 </svg>
                 Code
             </a>
+            <a class="btn btn-light" role="button"
+                href="https://iclr.cc/media/PosterPDFs/ICLR%202024/17430.png?t=1713840862.452945">
+                <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M2 3H10A2 2 0 0 1 12 1A2 2 0 0 1 14 3H22V5H21V16H14.41L17 23H14.86L13.2 18.3C13 17.69 12.55 17.29 12 17.29C11.45 17.29 11 17.69 10.8 18.3L9.14 23H7L9.59 16H3V5H2V3M5 5V14H19V5H5Z">
+                    </path>
+                </svg>Poster
+            </a>
+            <a class="btn btn-light" role="button" href="https://iclr.cc/media/iclr-2024/Slides/17430.pdf">
+                <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M19 19H5V5H19M19 3H5A2 2 0 0 0 3 5V19A2 2 0 0 0 5 21H19A2 2 0 0 0 21 19V5A2 2 0 0 0 19 3M13.96 12.29L11.21 15.83L9.25 13.47L6.5 17H17.5L13.96 12.29Z">
+                    </path>
+                </svg>Slides
+            </a>
+            <a class="btn btn-light" role="button" href="https://huggingface.co/collections/RunpeiDong/dreamllm">
+                <img class="btn-logo" src="assets/images/huggingface-logo.svg" alt="" aria-hidden="true"
+                    width="22" height="20" />Hugging Face
+            </a>
         </div>
 
     </div>
     <hr class="divider" />
 
-    <div class="container" style="max-width: 80%;">
+    <div class="container section" id="abstract" style="max-width: 80%;">
         <div class="row">
             <div class="col-md-12">
                 <h2>Abstract</h2>
@@ -214,7 +254,7 @@
         </div>
     </div>
 
-    <div class="container" style="max-width: 80%; mix-blend-mode: darken;">
+    <div class="container section plate" id="framework" style="max-width: 80%;">
         <div class="row captioned_videos">
             <div class="col-md-12">
                 <!-- Large format devices -->
@@ -229,7 +269,7 @@
                 </video>
                 <h6 class="caption">Given any interleaved documents, DreamLLM is trained by generative modeling of
                     everything including texts and images. The images are generated by SD image decoder conditioned on
-                    dream queries gathered MLLMs' sematics. DreamLLM also learns where to generate images by prediction
+                    dream queries gathered MLLMs' semantics. DreamLLM also learns where to generate images by predicting
                     special dream tokens.</h6>
             </div>
         </div>
@@ -237,7 +277,7 @@
     <hr class="divider" />
 
 
-    <div class="container" style="max-width: 80%;">
+    <div class="container section" id="dialogue" style="max-width: 80%;">
         <div class="row">
             <div class="col-md-12">
                 <h2>Multimodal dialogue examples</h2>
@@ -253,7 +293,7 @@
             <button class="conversation-button" onclick="toggleConversation(6)">Celebrity</button>
             <button class="conversation-button" onclick="toggleConversation(7)">Imagine</button>
             <button class="conversation-button" onclick="toggleConversation(8)">Tourism</button>
-            <button class="conversation-button" onclick="toggleConversation(9)">Enbodied AI</button>
+            <button class="conversation-button" onclick="toggleConversation(9)">Embodied AI</button>
         </div>
         <br>
 
@@ -262,7 +302,7 @@
             <div id="conversation1" class="chat-messages">
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/1_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/1_1.jpg" alt="Still from the film The Godfather" width="957" height="713" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -307,7 +347,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/1_2.jpg">
+                    <img class="image-message" src="assets/images/conversions/1_2.jpg" alt="Generated illustration of a panda in a suit drinking a martini" width="254" height="252" loading="lazy" decoding="async">
                 </div>
 
             </div>
@@ -316,7 +356,7 @@
 
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/2_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/2_1.jpg" alt="A large tiger rendered as artwork from coloured rocks and stones" width="720" height="960" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -343,7 +383,7 @@
 
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/3_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/3_1.jpg" alt="Johannes Vermeer's painting Girl with a Pearl Earring" width="715" height="1024" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -383,7 +423,7 @@
 
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/4_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/4_1.jpg" alt="Interior of a Disney Store filled with themed merchandise" width="768" height="576" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -426,7 +466,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/4_2.jpg">
+                    <img class="image-message" src="assets/images/conversions/4_2.jpg" alt="Generated image of a bag of Disney-branded merchandise" width="224" height="224" loading="lazy" decoding="async">
                 </div>
 
                 <div class="bot-message-container">
@@ -438,7 +478,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/4_3.jpg">
+                    <img class="image-message" src="assets/images/conversions/4_3.jpg" alt="Generated image of Mickey Mouse merchandise" width="224" height="224" loading="lazy" decoding="async">
                 </div>
 
             </div>
@@ -454,7 +494,7 @@
 
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/5_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/5_1.jpg" alt="Photograph A: the word Dream on a blue and pink background" width="512" height="512" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -466,7 +506,7 @@
 
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/5_2.jpg">
+                    <img class="image-message" src="assets/images/conversions/5_2.jpg" alt="Photograph B: the words Dream llm in a vintage style" width="512" height="512" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -502,7 +542,7 @@
 
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/6_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/6_1.jpg" alt="Photograph of Albert Einstein" width="1024" height="683" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -514,7 +554,7 @@
 
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/6_2.jpg">
+                    <img class="image-message" src="assets/images/conversions/6_2.jpg" alt="Photograph of Lionel Messi" width="1024" height="683" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -587,7 +627,7 @@
 
                 <div class="user-message-container">
                     <div class="user-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/7_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/7_1.jpg" alt="A brown teddy bear floating in a swimming pool" width="512" height="512" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -641,7 +681,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/7_2.jpg">
+                    <img class="image-message" src="assets/images/conversions/7_2.jpg" alt="Generated image of a teddy bear in a swim cap floating on its back" width="224" height="224" loading="lazy" decoding="async">
                 </div>
 
                 <div class="bot-message-container">
@@ -657,7 +697,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/7_3.jpg">
+                    <img class="image-message" src="assets/images/conversions/7_3.jpg" alt="Generated image of a teddy bear in a red and yellow shirt floating in water" width="224" height="224" loading="lazy" decoding="async">
                 </div>
 
                 <div class="user-message-container">
@@ -681,7 +721,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/7_4.jpg">
+                    <img class="image-message" src="assets/images/conversions/7_4.jpg" alt="Generated DSLR photograph of a bear walking through a forest" width="224" height="224" loading="lazy" decoding="async">
                 </div>
 
                 <div class="bot-message-container">
@@ -726,7 +766,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/8_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/8_1.jpg" alt="Generated photograph of the Vienna State Opera House" width="512" height="512" loading="lazy" decoding="async">
                 </div>
 
                 <div class="bot-message-container">
@@ -742,7 +782,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/8_2.jpg">
+                    <img class="image-message" src="assets/images/conversions/8_2.jpg" alt="Generated photograph of a Christmas market in Vienna" width="512" height="512" loading="lazy" decoding="async">
                 </div>
             </div>
 
@@ -772,7 +812,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/9_1.jpg">
+                    <img class="image-message" src="assets/images/conversions/9_1.jpg" alt="Generated photograph of a robot moving through the house toward the dining room" width="512" height="512" loading="lazy" decoding="async">
                 </div>
 
                 <div class="bot-message-container">
@@ -789,7 +829,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/9_2.jpg">
+                    <img class="image-message" src="assets/images/conversions/9_2.jpg" alt="Generated photograph of a mobile phone resting on the dining table" width="512" height="512" loading="lazy" decoding="async">
                 </div>
 
                 <div class="bot-message-container">
@@ -803,7 +843,7 @@
 
                 <div class="bot-message-container">
                     <div class="bot-icon"></div>
-                    <img class="image-message" src="assets/images/conversions/9_3.jpg">
+                    <img class="image-message" src="assets/images/conversions/9_3.jpg" alt="Generated photograph of a robot arm reaching for the mobile phone" width="512" height="512" loading="lazy" decoding="async">
                 </div>
 
                 <div class="bot-message-container">
@@ -821,47 +861,48 @@
         </div>
 
         <script>
-            const conversationButtons = document.querySelectorAll('.conversation-button');
-            const conversationContainers = document.querySelectorAll('.chat-messages');
+            (function () {
+                const buttons = document.querySelectorAll('.conversation-button');
+                const panels = document.querySelectorAll('.chat-messages');
+                const FADE_MS = 350; // keep in sync with .chat-messages transition
+                let current = 0;
+                let animating = false;
 
-            let currentConversationIndex = 0;
+                panels.forEach((panel, i) => {
+                    panel.style.display = i === current ? 'block' : 'none';
+                    panel.style.opacity = i === current ? '1' : '0';
+                });
+                buttons[current].classList.add('selected');
 
-            function initialize() {
-                for (let i = 1; i < conversationContainers.length; i++) {
-                    conversationContainers[i].style.opacity = '0';
-                    conversationContainers[i].style.display = 'none';
-                }
+                // A timer rather than 'transitionend': that event never fires when the
+                // opacity is already at its target, which used to wedge the tabs.
+                window.toggleConversation = function (index) {
+                    const next = index - 1;
+                    if (animating || next === current || !panels[next]) return;
+                    animating = true;
 
-                conversationButtons[currentConversationIndex].classList.add('selected');
-            }
-
-            window.addEventListener('load', initialize);
-
-            function toggleConversation(index) {
-                conversationContainers[currentConversationIndex].style.opacity = '0';
-                conversationButtons[currentConversationIndex].classList.remove('selected');
-
-                conversationContainers[currentConversationIndex].addEventListener('transitionend', function transitionEndCallback() {
-                    conversationContainers[currentConversationIndex].removeEventListener('transitionend', transitionEndCallback);
-
-                    conversationContainers[currentConversationIndex].style.display = 'none';
-
-                    currentConversationIndex = index - 1;
-                    conversationContainers[currentConversationIndex].style.display = 'block';
+                    const from = panels[current];
+                    buttons[current].classList.remove('selected');
+                    buttons[next].classList.add('selected');
+                    from.style.opacity = '0';
 
                     setTimeout(() => {
-                        conversationContainers[currentConversationIndex].style.opacity = '1';
-                        conversationButtons[currentConversationIndex].classList.add('selected');
-                    }, 0);
-                });
-            }
+                        from.style.display = 'none';
+                        current = next;
+                        panels[current].style.display = 'block';
+                        // Next frame, so the browser has a 0-opacity state to animate from.
+                        requestAnimationFrame(() => {
+                            panels[current].style.opacity = '1';
+                            animating = false;
+                        });
+                    }, FADE_MS);
+                };
+            })();
         </script>
-
-        <br><br>
     </div>
     <hr class="divider" />
 
-    <div class="container" style="max-width: 80%;">
+    <div class="container section" id="text-to-image" style="max-width: 80%;">
         <div class="row">
             <div class="col-md-12">
                 <h2>Text-to-image generation</h2>
@@ -870,46 +911,44 @@
         <div class="row">
             <div class="col-sm-2">
             </div>
-            <div class="col-sm-4">
-                <p><br><br><br><br>Oil-on-canvas painting of a blue night sky with roiling energy.
+            <div class="col-sm-4 my-auto">
+                <p>Oil-on-canvas painting of a blue night sky with roiling energy.
                     A fuzzy and bright yellow crescent moon shining at the top.
                     Below the exploding yellow stars and radiating swirls of blue, a distant village sits quietly on the right.
                     Connecting earth and sky is a flame-like cypress tree with curling and swaying branches on the left.
                     A church spire rises as a beacon over rolling blue hills.</p>
             </div>
             <div class="col-sm-4 my-auto">
-                <img src="assets/images/art.png" class="img-fluid">
+                <img src="assets/images/art.webp" alt="Oil-on-canvas painting of a blue night sky with a crescent moon over a village" width="512" height="512" decoding="async" class="img-fluid">
             </div>
         </div>
     </div>
     <hr class="divider" />
 
-    <div class="container" style="max-width: 80%;">
+    <div class="container section" id="try-it" style="max-width: 80%;">
         <div class="row">
             <div class="col-md-12">
                 <h2>Generate images from text yourself!</h2>
             </div>
         </div>
         <div class="row compositional">
-            <div class="col-sm-3 text left">
-                <br><br>
+            <div class="col-sm-3 text left my-auto">
                 <p class="selectable left" id="compositional_tags_left_depth_0"></p>
             </div>
             <div class="col-sm-3 my-auto">
                 <div class="image-compare-container">
                     <img id="compositionalImageLeft"
-                        src="assets/images/horse/an_astronaut_riding_a_horse_in_a_photorealistic_style.png"
+                        src="assets/images/horse/an_astronaut_riding_a_horse_in_a_photorealistic_style.webp" alt="an astronaut riding a horse in a photorealistic style" width="512" height="512" decoding="async"
                         class="img-fluid">
                 </div>
             </div>
-            <div class="col-sm-3 text right">
-                <br><br>
+            <div class="col-sm-3 text right my-auto">
                 <p class="selectable right" id="compositional_tags_right_depth_0"></p>
             </div>
             <div class="col-sm-3 my-auto">
                 <div class="image-compare-container">
                     <img id="compositionalImageRight"
-                        src="assets/images/duck/a_sculpture_of_a_duck_made_out_of_transparent_glass.png"
+                        src="assets/images/duck/a_sculpture_of_a_duck_made_out_of_transparent_glass.webp" alt="a sculpture of a duck made out of transparent glass" width="512" height="512" decoding="async"
                         class="img-fluid">
                 </div>
             </div>
@@ -918,7 +957,7 @@
     <hr class="divider" />
 
 
-    <div class="container" style="max-width: 80%; mix-blend-mode: darken;">
+    <div class="container section plate" id="dream-queries" style="max-width: 80%;">
         <div class="row">
             <div class="col-md-12">
                 <h2>How is image generated through dream queries?</h2>
@@ -928,7 +967,7 @@
             <div class="col-md-1">
             </div>
             <div class="col-md-1">
-                <img src="assets/images/query/cat.jpg" alt="DreamLLM" style="max-width: 150%;">
+                <img src="assets/images/query/cat.jpg" alt="A cat sitting beside a glass of whisky" width="512" height="512" loading="lazy" decoding="async" style="max-width: 150%;">
             </div>
             <div class="col-md-4">
                 <!-- Large format devices -->
@@ -946,7 +985,7 @@
             <div class="col-md-1">
             </div>
             <div class="col-md-1">
-                <img src="assets/images/query/bear.jpg" alt="DreamLLM" style="max-width: 150%">
+                <img src="assets/images/query/bear.jpg" alt="A polar bear standing in a forest" width="512" height="512" loading="lazy" decoding="async" style="max-width: 150%">
             </div>
             <div class="col-md-4">
                 <!-- Large format devices -->
@@ -965,7 +1004,7 @@
     </div>
     <hr class="divider" />
 
-    <div class="container" style="max-width: 80%;">
+    <div class="container section" id="citation" style="max-width: 80%;">
         <div class="row">
             <div class="col-md-12">
                 <h2>Citation</h2>
@@ -977,11 +1016,23 @@
                     &nbsp; url = {https://openreview.net/forum?id=y01KGvd9Bw},<br>
                     &nbsp; year   = {2024},<br>
                 }</code>
+                <button class="citation-copy" type="button" id="citationCopy">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z" />
+                    </svg>
+                    <span>Copy BibTeX</span>
+                </button>
             </div>
         </div>
     </div>
-    <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
-    <script src="/assets/js/yall.js"></script>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image">
+        <!-- src is set on open; leaving it off avoids a bogus request for the page itself. -->
+        <img alt="">
+    </div>
+
+    <script src="assets/js/yall.js"></script>
     <script>
         yall(
             {
@@ -995,11 +1046,137 @@
             videoElement.playbackRate = 1.5;
         }
     </script>
-    <script src="/assets/js/scripts.js"></script>
+    <script>
+        // Click any dialogue image to see it full size.
+        (function () {
+            const lightbox = document.getElementById('lightbox');
+            const frame = lightbox.querySelector('img');
+
+            const close = () => {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            };
+
+            document.querySelectorAll('.image-message').forEach((img) => {
+                img.addEventListener('click', () => {
+                    frame.src = img.currentSrc || img.src;
+                    frame.alt = img.alt;
+                    lightbox.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            lightbox.addEventListener('click', close);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
+            });
+        })();
+    </script>
+    <script>
+        // Copy the BibTeX entry, reconstructed from the rendered <code> block.
+        (function () {
+            const button = document.getElementById('citationCopy');
+            const label = button.querySelector('span');
+            const code = button.parentElement.querySelector('code');
+
+            button.addEventListener('click', async () => {
+                // <code> is not <pre>: innerText arrives with collapsed whitespace and
+                // &nbsp; indents, so rebuild canonical two-space-indented BibTeX.
+                const bibtex = code.innerText
+                    .split('\n')
+                    .map((line) => line.replace(/\s+/g, ' ').trim())
+                    .filter((line) => line.length)
+                    .map((line, i, all) => (i === 0 || i === all.length - 1 ? line : '  ' + line))
+                    .join('\n');
+                try {
+                    await navigator.clipboard.writeText(bibtex);
+                    label.textContent = 'Copied';
+                } catch {
+                    label.textContent = 'Press ⌘C to copy';
+                    const range = document.createRange();
+                    range.selectNodeContents(code);
+                    const selection = getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }
+                setTimeout(() => { label.textContent = 'Copy BibTeX'; }, 2000);
+            });
+        })();
+    </script>
+    <script>
+        // Settle each section in as it scrolls into view. The hiding class is added
+        // from JS so the page is never blank if scripting is unavailable.
+        (function () {
+            if (!('IntersectionObserver' in window)) return;
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const targets = document.querySelectorAll(
+                '.container > .row, .button-container, .chat-container, hr.divider'
+            );
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                });
+            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+            targets.forEach((el) => {
+                // Anything already on screen at load stays put; no flash of hidden content.
+                if (el.getBoundingClientRect().top < innerHeight) return;
+                el.classList.add('reveal');
+                observer.observe(el);
+            });
+        })();
+    </script>
+    <script>
+        // Side rail: light up whichever section is actually being read, and stay
+        // out of the way over the title block.
+        (function () {
+            const nav = document.querySelector('.sidenav');
+            if (!nav) return;
+
+            const items = [...nav.querySelectorAll('a')]
+                .map((a) => ({ li: a.parentElement, target: document.querySelector(a.getAttribute('href')) }))
+                .filter((item) => item.target);
+            if (!items.length) return;
+
+            let queued = false;
+
+            const sync = () => {
+                queued = false;
+                // The active section is the last one whose top has crossed a line a
+                // third of the way down the viewport.
+                const line = innerHeight * 0.34;
+                let active = null;
+                items.forEach((item) => {
+                    if (item.target.getBoundingClientRect().top <= line) active = item;
+                });
+                // The last section is short enough that on a tall viewport its top
+                // never crosses the line; once the page bottoms out it is the one
+                // being read regardless.
+                const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
+                if (atEnd) active = items[items.length - 1];
+                items.forEach((item) => item.li.classList.toggle('active', item === active));
+                nav.classList.toggle('visible', active !== null);
+            };
+
+            const schedule = () => {
+                if (queued) return;
+                queued = true;
+                requestAnimationFrame(sync);
+            };
+
+            addEventListener('scroll', schedule, { passive: true });
+            addEventListener('resize', schedule);
+            sync();
+        })();
+    </script>
+    <script src="assets/js/scripts.js"></script>
 
     <footer class="footer">
         <p style="text-align: center;">
-            The webpage template is borrowed from <a href="https://dreamfusion3d.github.io/">DreamFusion</a>. We thank
+            The webpage template is modified from <a href="https://dreamfusion3d.github.io/">DreamFusion</a>. We thank
             the authors for their codebase.
         </p>
     </footer>

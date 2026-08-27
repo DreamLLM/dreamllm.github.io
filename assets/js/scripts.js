@@ -41,7 +41,7 @@
 
         if (captions.includes(phrase)) {
             let compositionalImage = document.getElementById('compositionalImageLeft');
-            let imageName = phrase.replaceAll(' ', '_') + '.png';
+            let imageName = phrase.replaceAll(' ', '_') + '.webp';
 
             // Check if the current image source is the same as the new one.
             if (compositionalImage.alt !== phrase) {
@@ -142,7 +142,7 @@
 
         if (captions.includes(phrase)) {
             let compositionalImage = document.getElementById('compositionalImageRight');
-            let imageName = phrase.replaceAll(' ', '_') + '.png';
+            let imageName = phrase.replaceAll(' ', '_') + '.webp';
 
             // Check if the current image source is the same as the new one.
             if (compositionalImage.alt !== phrase) {
